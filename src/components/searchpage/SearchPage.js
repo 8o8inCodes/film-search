@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { getMovies } from '../../store/actions/MoviesActions';
 import { connect } from 'react-redux';
 
+import SearchHeader from './SearchHeader';
+import MovieList from './MovieList';
+
 // Exporting this component simply because it would be easier to write unit tests after
 export class SearchPage extends Component {
     render(){
         return (
             <div>
-                <h1>YAAAAS</h1>
+                <SearchHeader></SearchHeader>
+                <MovieList movies={this.props.movies}></MovieList>
+                <button>Load More...</button>
             </div>
         );
     }
@@ -17,7 +22,7 @@ export class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies
+        movies: state.movies.results
     }
 }
 

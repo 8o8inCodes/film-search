@@ -3,29 +3,29 @@ import config from '../../config/config';
 
 export const GET_MOVIES = 'GET_MOVIES';
 export const FETCHING_MOVIES = 'FETCHING_MOVIES';
-export const FETCHING_MOVIES_ERROR = 'FETCHING_MOVIES';
+export const FETCHING_MOVIES_ERROR = 'FETCHING_MOVIES_ERROR';
 
 const createGetMoviesAction = (data) => ({
     type: GET_MOVIES, 
     data
 });
 
-const createFetchingMoviesAction = (message) => ({
-    type: FETCHING_MOVIES,
+const createFetchingMoviesAction = () => ({
+    type: FETCHING_MOVIES
+});
+
+const createFetchingMoviesFailedAction = (message) => ({
+    type: FETCHING_MOVIES_ERROR,
     message
 });
 
-const createFetchingMoviesFailedAction = () => ({
-    type: FETCHING_MOVIES_ERROR
-});
-
 export const getMovies = (titlePrefix) => (dispatch) => {
-    axios.get(`http://www.omdbapi.com/?apikey=${config.imdb.apikey}&s=${titlePrefix}&type=movie&page=0`, 
+    axios.get(`http://www.omdbapi.com/?apikey=${config.imdb.apikey}&s=${titlePrefix}&type=movie&page=1`).then(
         (response) => {
-            if(response.Response){
-                dispatch(createGetMoviesAction(titlePrefix));
+            if(response.data.Response){
+                dispatch(createGetMoviesAction(response.data));
             } else {
-                dispatch(createFetchingMoviesFailedAction(response.Error));
+                dispatch(createFetchingMoviesFailedAction(response.data.Error));
             }
         }
     );
