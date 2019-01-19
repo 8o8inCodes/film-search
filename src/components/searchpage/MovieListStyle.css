@@ -1,5 +1,7 @@
 .movie-list-container ul li {
     padding: 10px;
+    background-color: rgb(53, 53, 53);
+    margin-bottom: 5px; 
 }
 
 .movie-list-container ul li .container{
