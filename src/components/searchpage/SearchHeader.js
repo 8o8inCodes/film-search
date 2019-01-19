@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { getMovies } from '../../store/actions/MoviesActions';
 import { connect } from 'react-redux';
 
+import './SearchHeaderStyle.css';
+
  class SearchHeader extends Component {
 
     state = {
@@ -19,10 +21,9 @@ import { connect } from 'react-redux';
 
     render(){
         return (
-            <div>
+            <div className="search-header">
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Search:
                         <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/>
                     </label>
                     <input type="submit" value="Search"/>

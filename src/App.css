@@ -1,0 +1,44 @@
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto-Regular', sans-serif;
+    color: rgb(226, 226, 226);
+    background-color: rgb(36, 37, 39);
+    margin-top: 40px;
+}
+
+a {
+    color: rgb(226, 226, 226);
+}
+
+input[type="text"] {
+    background-color: grey;
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(66, 66, 66);
+    font-size: 20px;
+    padding: 8px;
+}
+
+input[type="submit"], button {
+    background-color: rgb(143, 142, 142);
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(66, 66, 66);
+    font-size: 20px;
+    padding: 8px;
+    color: black;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: rgb(163, 163, 163);
+}
+
+.error-msg {
+    color: red;
+}
+
+

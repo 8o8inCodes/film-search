@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import SearchHeader from './SearchHeader';
 import MovieList from './MovieList';
 
+import './SearchPageStyle.css';
+
 // Exporting this component simply because it would be easier to write unit tests after
 export class SearchPage extends Component {
     loadMoreMovies = () => {
@@ -18,8 +20,11 @@ export class SearchPage extends Component {
         return (
             <div>
                 <SearchHeader></SearchHeader>
-                <MovieList movies={this.props.movies}></MovieList>
-                <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button>
+                <div className="movies-container">
+                    <h2 className="error-msg">{this.props.errorMsg}</h2>
+                    <MovieList movies={this.props.movies}></MovieList>
+                    <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button>
+                </div>
             </div>
         );
     }
@@ -28,6 +33,7 @@ export class SearchPage extends Component {
 const mapStateToProps = (state) => {
     return {
         page: state.movies.page,
+        errorMsg: state.movies.errorMsg,
         movies: state.movies.results,
         searchPrefix: state.movies.searchPrefix,
         canLoadMoreVideos: state.movies.canLoadMoreVideos

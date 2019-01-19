@@ -1,0 +1,19 @@
+.movie-list-container ul li {
+    padding: 10px;
+}
+
+.movie-list-container ul li .container{
+    display: inline-block;
+    vertical-align: top;
+    width: 500px;
+}
+
+.movie-list-container ul li img{
+    width: 170px;
+    padding-right: 10px;
+}
+
+
+h1 {
+    text-align: center;
+}

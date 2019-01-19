@@ -19,7 +19,8 @@ const MoviesReducer = (state = initState, action) => {
                 loading: false,
                 page: 1,
                 searchPrefix: action.searchPrefix,
-                canLoadMoreVideos
+                canLoadMoreVideos,
+                errorMsg: null
             };
         case GET_MORE_MOVIES:
             canLoadMoreVideos = state.results.length + action.data.Search.length < action.data.totalResults;
@@ -32,15 +33,23 @@ const MoviesReducer = (state = initState, action) => {
                 totalResults: action.data.totalResults,
                 loading: false,
                 page: action.page,
-                canLoadMoreVideos
+                canLoadMoreVideos,
+                errorMsg: null
             };
         case FETCHING_MOVIES:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                errorMsg: null
             };
         case FETCHING_MOVIES_ERROR:
-            return state;
+            return {
+                ...state,
+                loading: false,
+                results: [],
+                errorMsg: action.message,
+                searchPrefix: ""
+            };
         default:
             return state;
     }

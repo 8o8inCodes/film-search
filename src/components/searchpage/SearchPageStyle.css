@@ -1,0 +1,15 @@
+.movies-container {
+    padding-top: 20px;
+    width: 1000px;
+    margin: auto;
+    background-color: rgb(70, 70, 70);
+    min-height: 600px;
+    position: relative;
+    box-shadow: 0px 0px 151px 1px rgba(0,0,0,0.47);
+}
+
+.movies-container button {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}

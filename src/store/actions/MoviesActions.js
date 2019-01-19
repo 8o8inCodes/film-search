@@ -30,7 +30,7 @@ const createFetchingMoviesFailedAction = (message) => ({
 export const getMovies = (titlePrefix) => (dispatch) => {
     axios.get(`http://www.omdbapi.com/?apikey=${config.imdb.apikey}&s=${titlePrefix}&type=movie&page=1`).then(
         (response) => {
-            if(response.data.Response){
+            if(response.data.Response === "True"){
                 dispatch(createGetMoviesAction(response.data, titlePrefix));
             } else {
                 dispatch(createFetchingMoviesFailedAction(response.data.Error));
@@ -42,7 +42,7 @@ export const getMovies = (titlePrefix) => (dispatch) => {
 
 export const getMoreMovies = (titlePrefix, page) => (dispatch) => {
     axios.get(`http://www.omdbapi.com/?apikey=${config.imdb.apikey}&s=${titlePrefix}&type=movie&page=${page}`).then((response) => {
-        if(response.data.Response){
+        if(response.data.Response === "True"){
             dispatch(createGetMoreMoviesAction(response.data, page));
         } else {
             dispatch(createFetchingMoviesFailedAction(response.data.Error));
