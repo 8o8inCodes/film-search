@@ -7,12 +7,26 @@ import './SearchHeaderStyle.css';
  class SearchHeader extends Component {
 
     state = {
-        title: ""
+        title: "",
+        error: ""
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.getMovies(this.state.title);
+        if(this.validate()){
+            this.props.getMovies(this.state.title);
+        }
+    }
+
+    // there are plenty of ways to validate the forms, I choose this one real quick for this application.
+    validate = () => {
+        if(this.state.title.length >= 3){
+            this.setState({error: ""});
+            return true;
+        } else {
+            this.setState({error: "Search must contain at least 3 characters."});
+            return false;
+        }
     }
 
     handleChange = (e) => {
@@ -23,7 +37,8 @@ import './SearchHeaderStyle.css';
         return (
             <div className="search-header">
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label style={{color: "red"}}>
+                        {this.state.error}
                         <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/>
                     </label>
                     <input type="submit" value="Search"/>
