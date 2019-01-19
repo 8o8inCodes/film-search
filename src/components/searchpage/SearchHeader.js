@@ -34,7 +34,7 @@ import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMovies: (data) => dispatch(getMovies(data))
+        getMovies: (data) => dispatch(getMovies(data)),
     }
 }
 
