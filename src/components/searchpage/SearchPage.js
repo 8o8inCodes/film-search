@@ -8,8 +8,8 @@ import MovieList from './MovieList';
 // Exporting this component simply because it would be easier to write unit tests after
 export class SearchPage extends Component {
     loadMoreMovies = () => {
-        const { page, totalResults, movies, searchPrefix } = this.props;
-        if(movies.length < totalResults){
+        const { page, searchPrefix, canLoadMoreVideos } = this.props;
+        if(canLoadMoreVideos){
             this.props.getMoreMovies(searchPrefix, page+1);
         }
     }
@@ -19,7 +19,7 @@ export class SearchPage extends Component {
             <div>
                 <SearchHeader></SearchHeader>
                 <MovieList movies={this.props.movies}></MovieList>
-                <button onClick={this.loadMoreMovies}>Load More...</button>
+                <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button>
             </div>
         );
     }
@@ -28,9 +28,9 @@ export class SearchPage extends Component {
 const mapStateToProps = (state) => {
     return {
         page: state.movies.page,
-        totalResults: state.movies.totalResults,
         movies: state.movies.results,
-        searchPrefix: state.movies.searchPrefix
+        searchPrefix: state.movies.searchPrefix,
+        canLoadMoreVideos: state.movies.canLoadMoreVideos
     }
 }
 

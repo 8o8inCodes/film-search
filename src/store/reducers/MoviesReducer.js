@@ -3,21 +3,26 @@ import { GET_MOVIES, GET_MORE_MOVIES, FETCHING_MOVIES_ERROR, FETCHING_MOVIES } f
 const initState = {
     loading: false,
     page: 0,
-    searchPrefix: ""
+    searchPrefix: "",
+    canLoadMoreVideos: false
 };
 
 const MoviesReducer = (state = initState, action) => {
+    let canLoadMoreVideos = false;
     switch (action.type) {
         case GET_MOVIES:
+            canLoadMoreVideos = action.data.Search.length < action.data.totalResults;
             return {
                 ...state,
                 results: action.data.Search,
                 totalResults: action.data.totalResults,
                 loading: false,
                 page: 1,
-                searchPrefix: action.searchPrefix
+                searchPrefix: action.searchPrefix,
+                canLoadMoreVideos
             };
         case GET_MORE_MOVIES:
+            canLoadMoreVideos = state.results.length + action.data.Search.length < action.data.totalResults;
             return {
                 ...state,
                 results: [
@@ -26,7 +31,8 @@ const MoviesReducer = (state = initState, action) => {
                 ],
                 totalResults: action.data.totalResults,
                 loading: false,
-                page: action.page
+                page: action.page,
+                canLoadMoreVideos
             };
         case FETCHING_MOVIES:
             return {
