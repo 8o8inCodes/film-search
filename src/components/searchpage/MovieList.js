@@ -5,12 +5,16 @@ import './MovieListStyle.css';
 const MovieList = (props) => {
     return (
         <div className="movie-list-container">
-            {searchResults(props.movies)}
+            {searchResults(props.movies, props.loading)}
         </div>
     );
 }
 
-const searchResults = (movies) => {
+const searchResults = (movies, loading) => {
+    if(loading) {
+        // For the best user experience replace this with loading circle
+        return <h1>Loading...</h1>;
+    }
     if(movies){
         return (
             <div>

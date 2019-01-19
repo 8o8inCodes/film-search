@@ -21,7 +21,7 @@ export class SearchPage extends Component {
             <div>
                 <SearchHeader></SearchHeader>
                 <div className="movies-container">
-                    <MovieList movies={this.props.movies}></MovieList>
+                    <MovieList movies={this.props.movies} loading={this.props.loading}></MovieList>
                     <h2 className="error-msg">{this.props.errorMsg}</h2>
                     {this.props.canLoadMoreVideos ? <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button> : null}
                 </div>
@@ -33,6 +33,7 @@ export class SearchPage extends Component {
 const mapStateToProps = (state) => {
     return {
         page: state.movies.page,
+        loading: state.movies.loading,
         errorMsg: state.movies.errorMsg,
         movies: state.movies.results,
         searchPrefix: state.movies.searchPrefix,

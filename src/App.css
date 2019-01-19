@@ -62,7 +62,7 @@ input[type="submit"]:hover, button:hover {
 }
 
 .error-msg {
-    color: red;
+    color: #bd4545;
     text-align: center;
 }
 
