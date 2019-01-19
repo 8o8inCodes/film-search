@@ -21,9 +21,9 @@ export class SearchPage extends Component {
             <div>
                 <SearchHeader></SearchHeader>
                 <div className="movies-container">
-                    <h2 className="error-msg">{this.props.errorMsg}</h2>
                     <MovieList movies={this.props.movies}></MovieList>
-                    <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button>
+                    <h2 className="error-msg">{this.props.errorMsg}</h2>
+                    {this.props.canLoadMoreVideos ? <button onClick={this.loadMoreMovies} disabled={!this.props.canLoadMoreVideos}>Load More...</button> : null}
                 </div>
             </div>
         );

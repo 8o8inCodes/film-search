@@ -1,3 +1,15 @@
+* {
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+
+    -webkit-transition: all 0.2s ease;
+    -moz-transition:    all 0.2s ease;
+    -ms-transition:     all 0.2s ease;
+    -o-transition:      all 0.2s ease;
+    transition:      all 0.2s ease;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -14,31 +26,44 @@ a {
     color: rgb(226, 226, 226);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #1b1b1b inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #a7a7a7 !important;
+}
+
 input[type="text"] {
-    background-color: grey;
+    background-color: #1b1b1b !important;
     border: solid;
     border-width: 1px;
     border-color: rgb(66, 66, 66);
     font-size: 20px;
     padding: 8px;
+    color: #a7a7a7 !important;
 }
 
 input[type="submit"], button {
-    background-color: rgb(143, 142, 142);
+    background-color: rgb(43, 43, 43);
     border: solid;
     border-width: 1px;
     border-color: rgb(66, 66, 66);
     font-size: 20px;
     padding: 8px;
-    color: black;
+    color: #ababab;
 }
 
 input[type="submit"]:hover, button:hover {
-    background-color: rgb(163, 163, 163);
+    background-color: rgb(85, 85, 85);
 }
 
 .error-msg {
     color: red;
+    text-align: center;
 }
 
 
